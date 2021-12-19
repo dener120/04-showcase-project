@@ -87,7 +87,7 @@ function addProduct() {
     const productPrice = document.getElementById('input-product-price');
 
     let product = {
-        id: products.sort((a, b) => b.id - a.id)[0].id += 1,
+        id: products.map((product) => product.id++).sort((a, b) => b.id - a.id)[0],
         title: productName.value,
         price: +productPrice.value,
     }
