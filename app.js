@@ -72,6 +72,7 @@ function renderProduct() {
     shop.innerHTML = '';
     products.forEach(item => {
         const el = document.createElement('div');
+        el.classList.add('product');
         el.innerHTML = `
             <h2>${item.title}</h2>
             <p>Price: <span class="price"> ${item.price}</p>
@@ -80,7 +81,6 @@ function renderProduct() {
         shop.appendChild(el);
     })
 }
-
 
 function addProduct() {
     const productName = document.getElementById('input-product-name');
