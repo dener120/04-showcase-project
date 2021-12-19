@@ -1,4 +1,4 @@
-const products = [
+let products = [
     {
         id: 1,
         title: 'Lenovo Yoga',
@@ -65,3 +65,42 @@ function renderCart() {
         cart.appendChild(el);
     })
 }
+
+function renderProduct() {
+    const shop = document.querySelector('.shop')
+
+    shop.innerHTML = '';
+    products.forEach(item => {
+        const el = document.createElement('div');
+        el.innerHTML = `
+            <h2>${item.title}</h2>
+            <p>Price: <span class="price"> ${item.price}</p>
+            <button onclick="addToBasket(${item.id})">Buy</button>
+        `
+        shop.appendChild(el);
+    })
+}
+
+
+function addProduct() {
+    const productName = document.getElementById('input-product-name');
+    const productPrice = document.getElementById('input-product-price');
+
+    let product = {
+        id: products.sort((a, b) => b.id - a.id)[0].id += 1,
+        title: productName.value,
+        price: +productPrice.value,
+    }
+
+    products = [
+        product,
+        ...products
+    ]
+
+    renderProduct()
+}
+
+document.getElementById("btn-create").addEventListener("click", (event) =>{
+    event.preventDefault()
+    addProduct()
+});
