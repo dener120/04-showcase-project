@@ -86,8 +86,12 @@ function addProduct() {
     const productName = document.getElementById('input-product-name');
     const productPrice = document.getElementById('input-product-price');
 
+    const ids = products.reduce((acc, product) => {
+      return [...acc, product.id]
+    }, [])
+
     let product = {
-        id: products.map((product) => product.id++).sort((a, b) => b.id - a.id)[0],
+        id: Math.max(...ids) + 1,
         title: productName.value,
         price: +productPrice.value,
     }
